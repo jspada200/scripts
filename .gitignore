@@ -205,3 +205,11 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Etsy automation local data
+etsy_automation/orders.csv
+etsy_automation/tracking.csv
+
+node_modules/
+package-lock.json
+.env

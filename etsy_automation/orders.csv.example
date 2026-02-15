@@ -1,0 +1,3 @@
+order_id,buyer_identifier,order_url
+123456789, buyer_username,
+987654321, another_buyer, https://www.etsy.com/your/orders/...
