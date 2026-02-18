@@ -213,3 +213,4 @@ etsy_automation/tracking.csv
 node_modules/
 package-lock.json
 .env
+service-account.json
