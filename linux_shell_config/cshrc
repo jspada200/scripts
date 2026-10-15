@@ -1,0 +1,31 @@
+# Interactive tcsh configuration
+# Requires tcsh and git. Companion helper: ~/.git-prompt-tcsh
+
+if ( ! $?prompt ) exit
+
+# History: keep a substantial history and merge it across sessions.
+set history = 5000
+set savehist = (5000 merge)
+set histdup = erase
+
+# Emacs-style command line editing enables prefix history search.
+bindkey -e
+bindkey -k up history-search-backward
+bindkey -k down history-search-forward
+# Common xterm Page Up / Page Down sequences.
+bindkey '^[[5~' history-search-backward
+bindkey '^[[6~' history-search-forward
+
+# ANSI colors wrapped in tcsh's non-printing markers for correct cursor movement.
+set p_cyan    = '%{\033[1;36m%}'
+set p_green   = '%{\033[1;32m%}'
+set p_yellow  = '%{\033[1;33m%}'
+set p_purple  = '%{\033[1;35m%}'
+set p_blue    = '%{\033[1;34m%}'
+set p_reset   = '%{\033[0m%}'
+
+# Called before every prompt, including after cd, git checkout, setenv, etc.
+alias precmd 'set p_show = ""; if ( $?SHOW ) set p_show = "SHOW: $SHOW  "; set p_shot = ""; if ( $?SHOT ) set p_shot = "SHOT: $SHOT  "; set p_git = "`$HOME/.git-prompt-tcsh`"; set prompt = "${p_cyan}%n@%m ${p_blue}%~${p_reset}\n${p_green}${p_show}${p_yellow}${p_shot}${p_purple}${p_git}${p_reset}%# "'
+
+# Set a reasonable prompt even before the first precmd event.
+set prompt = "${p_cyan}%n@%m ${p_blue}%~${p_reset}\n%# "
